@@ -1,0 +1,203 @@
+.ql-font {
+    max-height: 200px !important; /* Set maximum height */
+    /* Enable vertical scrollbar */
+  }
+  
+  ql-font-arial,
+  .ql-font span[data-value="arial"]::before {
+    font-family: Arial, sans-serif;
+  }
+  .ql-font-comic-sans,
+  .ql-font span[data-value="comic-sans"]::before {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+  }
+  .ql-font-courier-new,
+  .ql-font span[data-value="courier-new"]::before {
+    font-family: "Courier New";
+  }
+  
+  .ql-font-calibri,
+  .ql-font span[data-value="calibri"]::before {
+    font-family: "Calibri", sans-serif;
+  }
+  
+  .ql-font-georgia,
+  .ql-font span[data-value="georgia"]::before {
+    font-family: Georgia, serif;
+  }
+  .ql-font-helvetica,
+  .ql-font span[data-value="helvetica"]::before {
+    font-family: Helvetica, sans-serif;
+  }
+  .ql-font-lucida,
+  .ql-font span[data-value="lucida"]::before {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  }
+  
+  .ql-font-times-new-roman,
+  .ql-font span[data-value="times-new-roman"]::before {
+    font-family: "Times New Roman", serif;
+  }
+  
+  /* Impact */
+  .ql-font-impact,
+  .ql-font span[data-value="impact"]::before {
+    font-family: "Impact", sans-serif;
+  }
+  
+  /* Tahoma */
+  .ql-font-tahoma,
+  .ql-font span[data-value="tahoma"]::before {
+    font-family: "Tahoma", sans-serif;
+  }
+  
+  /* Trebuchet MS */
+  .ql-font-trebuchet-ms,
+  .ql-font span[data-value="trebuchet-ms"]::before {
+    font-family: "Trebuchet MS", sans-serif;
+  }
+  
+  /* Arial Black */
+  .ql-font-arial-black,
+  .ql-font span[data-value="arial-black"]::before {
+    font-family: "Arial Black", sans-serif;
+  }
+  
+  /* Palatino */
+  .ql-font-palatino,
+  .ql-font span[data-value="palatino"]::before {
+    font-family: "Palatino", serif;
+  }
+  
+  /* Garamond */
+  .ql-font-garamond,
+  .ql-font span[data-value="garamond"]::before {
+    font-family: "Garamond", serif;
+  }
+  
+  /* Book Antiqua */
+  .ql-font-book-antiqua,
+  .ql-font span[data-value="book-antiqua"]::before {
+    font-family: "Book Antiqua", serif;
+  }
+  
+  /* Courier */
+  .ql-font-courier,
+  .ql-font span[data-value="courier"]::before {
+    font-family: "Courier", monospace;
+  }
+  
+  /* Century Gothic */
+  .ql-font-century-gothic,
+  .ql-font span[data-value="century-gothic"]::before {
+    font-family: "Century Gothic", sans-serif;
+  }
+  
+  /* Copperplate */
+  .ql-font-copperplate,
+  .ql-font span[data-value="copperplate"]::before {
+    font-family: "Copperplate", sans-serif;
+  }
+  
+  /* Futura */
+  .ql-font-futura,
+  .ql-font span[data-value="futura"]::before {
+    font-family: "Futura", sans-serif;
+  }
+  
+  /* Gill Sans */
+  .ql-font-gill-sans,
+  .ql-font span[data-value="gill-sans"]::before {
+    font-family: "Gill Sans", sans-serif;
+  }
+  
+  /* Myriad Pro */
+  .ql-font-myriad-pro,
+  .ql-font span[data-value="myriad-pro"]::before {
+    font-family: "Myriad Pro", sans-serif;
+  }
+  
+  /* Optima */
+  .ql-font-optima,
+  .ql-font span[data-value="optima"]::before {
+    font-family: "Optima", sans-serif;
+  }
+  
+  /* Rockwell */
+  .ql-font-rockwell,
+  .ql-font span[data-value="rockwell"]::before {
+    font-family: "Rockwell", serif;
+  }
+  
+  /* Baskerville */
+  .ql-font-baskerville,
+  .ql-font span[data-value="baskerville"]::before {
+    font-family: "Baskerville", serif;
+  }
+  
+  /* Brush Script */
+  .ql-font-brush-script,
+  .ql-font span[data-value="brush-script"]::before {
+    font-family: "Brush Script", cursive;
+  }
+  
+  .ql-font-verdana,
+  .ql-font span[data-value="verdana"]::before {
+    font-family: "Verdana", sans-serif;
+  }
+  
+  /* Comic Sans MS */
+  .ql-font-comic-sans-ms,
+  .ql-font span[data-value="comic-sans-ms"]::before {
+    font-family: "Comic Sans MS", cursive;
+  }
+  
+  /* Franklin Gothic Medium */
+  .ql-font-franklin-gothic-medium,
+  .ql-font span[data-value="franklin-gothic-medium"]::before {
+    font-family: "Franklin Gothic Medium", sans-serif;
+  }
+  
+  /* Set content for sizes */
+  .ql-size-extra-small,
+  .ql-size span[data-value="extra-small"]::before {
+    font-size: 13px !important;
+  }
+  .ql-size-small,
+  .ql-size span[data-value="small"]::before {
+    font-size: 14px !important;
+  }
+  .ql-size-medium,
+  .ql-size span[data-value="medium"]::before {
+    font-size: 18px !important;
+  }
+  .ql-size-large,
+  .ql-size span[data-value="large"]::before {
+    font-size: 20px !important;
+  }
+  
+  .ql-picker.ql-insertCustomTags {
+    width: 90px;
+  }
+  
+  .ql-picker.ql-insertCustomTags1 {
+    width: 90px;
+  }
+  
+  .ql-picker.ql-dropdown {
+    width: 90px;
+  }
+  
+  .ql-insertCustomTags .ql-picker-item:before {
+    content: attr(data-label);
+  }
+  
+  .ql-insertCustomTags1 .ql-picker-item:before {
+    content: attr(data-label);
+  }
+  
+  .ql-myDropdown {
+    background-color: #f00;
+    z-index: 100;
+  }
+  
