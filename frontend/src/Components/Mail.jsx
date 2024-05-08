@@ -20,13 +20,13 @@ function EmailForm() {
   const mailApi = async () => {
     try {
       const emailArray = emailInput.split(",").map((email) => email.trim());
-      await axios.post("http://localhost:5000/api/mailer", {
+      await axios.post("https://mail-sender-1.onrender.com/api/mailer", {
         recipients: emailArray,
         html: content,
         subject: subject,
       });
 
-      toast.success("mail sent success", {
+      toast.success("mail sent success!", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
