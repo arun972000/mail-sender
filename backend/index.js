@@ -1,10 +1,15 @@
 import express, { json } from "express";
 import { mailTransporter, mailDetails } from "./mailer.js";
+import cors from "cors";
 
 const app = express();
 
 app.use(json());
-
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 const PORT = process.env.PORT || 5000;
 
 app.get("/", async (req, res) => {
