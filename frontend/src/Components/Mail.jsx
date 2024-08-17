@@ -9,35 +9,73 @@ import "react-toastify/dist/ReactToastify.css";
 
 function EmailForm() {
   const [emailInput, setEmailInput] = useState("");
-  const [content, setContent] = useState("");
-
+  const [content, setContent] = useState(""); // Content from ReactQuill
+  const [htmlContent, setHtmlContent] = useState(""); // HTML content from textarea
   const [subject, setSubject] = useState("");
-
+  const [isTemplateMode, setIsTemplateMode] = useState(false); // Checkbox state
+  const [success, setSuccess] = useState([])
+  const [failure, setFailure] = useState([])
+  const [delayed, setDelayed] = useState([]) // State to store email statuses
+  const [loading, setLoading] = useState(false)
   const handleInputChange = (e) => {
     setSubject(e.target.value);
+  };
+
+  const handleHtmlContentChange = (e) => {
+    setHtmlContent(e.target.value);
+  };
+
+  const handleModeChange = (e) => {
+    const checked = e.target.checked;
+    setIsTemplateMode(checked);
+    // Clear content when switching modes
+    if (checked) {
+      setContent(""); // Clear editor content if switching to HTML input
+    } else {
+      setHtmlContent(""); // Clear HTML content if switching to editor
+    }
   };
 
   const mailApi = async () => {
     try {
       const emailArray = emailInput.split(",").map((email) => email.trim());
-      await axios.post("https://mail-sender-1.onrender.com/api/mailer", {
+      const payload = {
         recipients: emailArray,
-        html: content,
         subject: subject,
-      });
+        html: isTemplateMode ? htmlContent : content // Send htmlContent if in template mode, otherwise send content
+      };
 
-      toast.success("mail sent success!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      const response = await axios.post("https://mail-sender-1.onrender.com/api/mailer", payload);
+      setLoading(false)
+      if (response.data.success) {
+
+        setSuccess(response.data.results.success)
+        setFailure(response.data.results.failure)
+        setDelayed(response.data.results.delay)
+        toast.success("Mail sent successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      } else {
+        toast.error("Failed to send mail. Please try again.", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
     } catch (err) {
-      toast.error(err, {
+      toast.error("Failed to send mail. Please try again.", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -52,6 +90,7 @@ function EmailForm() {
   };
 
   const handleSubmit = (event) => {
+    setLoading(true)
     event.preventDefault();
     mailApi();
   };
@@ -81,19 +120,50 @@ function EmailForm() {
             onChange={handleInputChange}
           />
         </div>
-        <FormLabel>Body of the Letter</FormLabel>
-        <EditorToolbar />
-        <ReactQuill
-          modules={modules}
-          formats={formats}
-          theme="snow"
-          value={content}
-          onChange={(value) => setContent(value)}
-        />
-        <Button type="submit" className="mt-3">
-          Send Emails
+        <Form.Group className="mb-3">
+          <Form.Check
+            type="checkbox"
+            id="modeCheckbox"
+            label="Use Template Mode"
+            checked={isTemplateMode}
+            onChange={handleModeChange}
+          />
+        </Form.Group>
+
+        {isTemplateMode ? (
+          <Form.Group className="mb-3">
+            <Form.Label>HTML Content (optional):</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={5}
+              value={htmlContent}
+              onChange={handleHtmlContentChange}
+              placeholder="Enter HTML content here..."
+            />
+          </Form.Group>
+        ) : (
+          <>
+            <FormLabel>Body of the Letter</FormLabel>
+            <EditorToolbar />
+            <ReactQuill
+              modules={modules}
+              formats={formats}
+              theme="snow"
+              value={content}
+              onChange={(value) => setContent(value)}
+            />
+          </>
+        )}
+
+        <Button type="submit" className="mt-3" disabled={loading}>
+          {loading ? "Please wait" : "Send Emails" }
         </Button>
       </Form>
+      <div className="mt-3"><h4>Email Status</h4>
+        {success.length !== 0 && success.map((item, i) => <li key={i} className="text-success">{item.email} - {item.status}</li>)}
+        {failure.length !== 0 && failure.map((item, i) => <li key={i} className="text-danger">{item.email} - {item.status}</li>)}
+        {delayed.length !== 0 && delayed.map((item, i) => <li key={i} className="text-warning">{item.email} - {item.status}</li>)}
+      </div>
     </>
   );
 }
