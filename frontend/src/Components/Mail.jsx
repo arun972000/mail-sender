@@ -75,6 +75,7 @@ function EmailForm() {
         });
       }
     } catch (err) {
+      setLoading(false)
       toast.error("Failed to send mail. Please try again.", {
         position: "top-right",
         autoClose: 3000,
