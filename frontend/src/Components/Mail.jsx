@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
 import axios from "axios";
 import { Form, Button, FormLabel } from "react-bootstrap";
@@ -6,6 +7,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./mail.css"
 
 function EmailForm() {
   const [emailInput, setEmailInput] = useState("");
@@ -17,6 +19,15 @@ function EmailForm() {
   const [failure, setFailure] = useState([])
   const [delayed, setDelayed] = useState([]) // State to store email statuses
   const [loading, setLoading] = useState(false)
+  const usageInstructions = `
+  1. Enter email addresses separated by commas.
+  2. Choose a subject for your email.
+  3. Optionally, enable "Use Template Mode" to enter HTML content.
+  4. If not using template mode, use the editor to craft your email content.
+  5. Click "Send Emails" to dispatch your message.
+  6. The list of successfully sent emails will be displayed below.
+`;
+
   const handleInputChange = (e) => {
     setSubject(e.target.value);
   };
@@ -157,13 +168,23 @@ function EmailForm() {
         )}
 
         <Button type="submit" className="mt-3" disabled={loading}>
-          {loading ? "Please wait" : "Send Emails" }
+          {loading ? "Please wait" : "Send Emails"}
         </Button>
       </Form>
       <div className="mt-3"><h4>Email Status</h4>
         {success.length !== 0 && success.map((item, i) => <li key={i} className="text-success">{item.email} - {item.status}</li>)}
         {failure.length !== 0 && failure.map((item, i) => <li key={i} className="text-danger">{item.email} - {item.status}</li>)}
         {delayed.length !== 0 && delayed.map((item, i) => <li key={i} className="text-warning">{item.email} - {item.status}</li>)}
+      </div>
+
+      <div className="user-instructions mt-4">
+        <h5>User Instructions:</h5>
+        <p>1. Enter email addresses separated by commas.<br/>
+          2. Choose a subject for your email.<br/>
+          3. Optionally, enable "Use Template Mode" to enter HTML content.<br/>
+          4. If not using template mode, use the editor to craft your email content.<br/>
+          5. Click "Send Emails" to dispatch your message.<br/>
+          6. The list of successfully sent emails will be displayed below.</p>
       </div>
     </>
   );
