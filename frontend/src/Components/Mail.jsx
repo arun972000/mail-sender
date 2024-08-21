@@ -49,7 +49,7 @@ function EmailForm() {
         html: isTemplateMode ? htmlContent : content // Send htmlContent if in template mode, otherwise send content
       };
 
-      const response = await axios.post("http://localhost:5000/api/mailer", payload); //https://mail-sender-1.onrender.com/api/mailer
+      const response = await axios.post("https://mail-sender-1.onrender.com/api/mailer", payload); //https://mail-sender-1.onrender.com/api/mailer
       setLoading(false)
       if (response.data.success) {
 
