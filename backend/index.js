@@ -1,6 +1,10 @@
 import express, { json } from "express";
 import { mailTransporter, mailDetails } from "./mailer.js";
 import cors from "cors";
+import dotenv from "dotenv"
+
+
+dotenv.config();
 
 const app = express();
 
@@ -61,6 +65,7 @@ const sendEmailsInBatches = async (recipients, subject, htmlContent) => {
       console.log(`Batch ${i / BATCH_SIZE + 1} sent successfully`);
     } catch (error) {
       console.log("Error in batch", i / BATCH_SIZE + 1, ":", error);
+      console.log(mailTransporter)
     }
 
     // Delay before sending the next batch

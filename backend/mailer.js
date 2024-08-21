@@ -1,14 +1,15 @@
 import nodemailer from "nodemailer";
+import dotenv from "dotenv"
 
-
+dotenv.config()
 
 export const mailTransporter = nodemailer.createTransport({
-  host: 'smtpout.secureserver.net', // e.g., smtp.gmail.com, smtp.office365.com
-  port: 465, // or 465
+  host: process.env.MAIL_HOST, // e.g., smtp.gmail.com, smtp.office365.com
+  port: process.env.MAIL_PORT, // or 465
   secure: true, // true for 465, false for other ports
   auth: {
-      user: 'enquiry@raceautoindia.com', // your email
-      pass: 'Raceauto@0724', // your email password
+      user: process.env.USER, // your email
+      pass: process.env.MAIL_PASS, // your email password
   },
   tls: {
     ciphers: 'SSLv3'            // Optional: Some Outlook servers may require this
