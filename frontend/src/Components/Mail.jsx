@@ -19,14 +19,7 @@ function EmailForm() {
   const [failure, setFailure] = useState([])
   const [delayed, setDelayed] = useState([]) // State to store email statuses
   const [loading, setLoading] = useState(false)
-  const usageInstructions = `
-  1. Enter email addresses separated by commas.
-  2. Choose a subject for your email.
-  3. Optionally, enable "Use Template Mode" to enter HTML content.
-  4. If not using template mode, use the editor to craft your email content.
-  5. Click "Send Emails" to dispatch your message.
-  6. The list of successfully sent emails will be displayed below.
-`;
+
 
   const handleInputChange = (e) => {
     setSubject(e.target.value);
@@ -56,7 +49,7 @@ function EmailForm() {
         html: isTemplateMode ? htmlContent : content // Send htmlContent if in template mode, otherwise send content
       };
 
-      const response = await axios.post("https://mail-sender-1.onrender.com/api/mailer", payload);
+      const response = await axios.post("http://localhost:5000/api/mailer", payload); //https://mail-sender-1.onrender.com/api/mailer
       setLoading(false)
       if (response.data.success) {
 
