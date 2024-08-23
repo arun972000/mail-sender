@@ -25,7 +25,7 @@ export const mailTransporter = nodemailer.createTransport({
 // });
 
 export const mailDetails = {
-  from: "enquiry@raceautoindia.com",
+  from:`Race Auto India <enquiry@raceautoindia.com>`,
   to: "abc@gmail.com",
   subject: "Test mail",
   text: "Node.js testing mail for GeeksforGeeks",
