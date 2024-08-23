@@ -52,7 +52,6 @@ function EmailForm() {
       const response = await axios.post("https://mail-sender-1.onrender.com/api/mailer", payload); //https://mail-sender-1.onrender.com/api/mailer
       setLoading(false)
       if (response.data.success) {
-
         setSuccess(response.data.results.success)
         setFailure(response.data.results.failure)
         setDelayed(response.data.results.delay)
@@ -103,7 +102,6 @@ function EmailForm() {
   return (
     <>
       <ToastContainer />
-
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="emailInput" className="mb-3">
           <Form.Label>Enter email addresses (separated by commas):</Form.Label>
@@ -112,6 +110,7 @@ function EmailForm() {
             value={emailInput}
             onChange={(e) => setEmailInput(e.target.value)}
             placeholder="e.g., email1@example.com, email2@example.com"
+            required
           />
         </Form.Group>
         <div className="form-group mb-3">
@@ -123,6 +122,7 @@ function EmailForm() {
             placeholder="Enter Subject..."
             value={subject}
             onChange={handleInputChange}
+            required
           />
         </div>
         <Form.Group className="mb-3">
@@ -165,18 +165,20 @@ function EmailForm() {
         </Button>
       </Form>
       <div className="mt-3"><h4>Email Status</h4>
-        {success.length !== 0 && success.map((item, i) => <li key={i} className="text-success">{item.email} - {item.status}</li>)}
-        {failure.length !== 0 && failure.map((item, i) => <li key={i} className="text-danger">{item.email} - {item.status}</li>)}
-        {delayed.length !== 0 && delayed.map((item, i) => <li key={i} className="text-warning">{item.email} - {item.status}</li>)}
+        <ol>
+          {success.length !== 0 && success.map((item, i) => <li key={i} className="text-success">{item.email} - {item.status}</li>)}
+          {failure.length !== 0 && failure.map((item, i) => <li key={i} className="text-danger">{item.email} - {item.status}</li>)}
+          {delayed.length !== 0 && delayed.map((item, i) => <li key={i} className="text-warning">{item.email} - {item.status}</li>)}
+        </ol>
       </div>
 
       <div className="user-instructions mt-4">
         <h5>User Instructions:</h5>
-        <p>1. Enter email addresses separated by commas.<br/>
-          2. Choose a subject for your email.<br/>
-          3. Optionally, enable "Use Template Mode" to enter HTML content.<br/>
-          4. If not using template mode, use the editor to craft your email content.<br/>
-          5. Click "Send Emails" to dispatch your message.<br/>
+        <p>1. Enter email addresses separated by commas.<br />
+          2. Choose a subject for your email.<br />
+          3. Optionally, enable "Use Template Mode" to enter HTML content.<br />
+          4. If not using template mode, use the editor to craft your email content.<br />
+          5. Click "Send Emails" to dispatch your message.<br />
           6. The list of successfully sent emails will be displayed below.</p>
       </div>
     </>
