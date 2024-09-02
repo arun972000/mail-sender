@@ -32,7 +32,7 @@ export const mailDetails = {
   html: "hello",
   attachments: [{
     filename: 'thumbnail logo.png',
-    path: 'asset/thumbnail logo.png',
+    path: 'asset/black logo.png',
     cid: 'unique@nodemailer.com' //same cid value as in the html img src
 }]
 };
